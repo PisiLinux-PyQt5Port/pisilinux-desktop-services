@@ -57,12 +57,12 @@ class QIconLoader:
         self._forceCache = forceCache
 
         # Get possible Data Directories
-        dataDirs = getenv('XDG_DATA_DIRS')
+        dataDirs = QFile.decodeName(getenv('XDG_DATA_DIRS'))
         if dataDirs.isspace():
-           dataDirs = str('/usr/local/share/:/usr/share/')
+            dataDirs = '/usr/local/share/:/usr/share/'
 
-        dataDirs.str(QDir.homePath() + ":") + dataDirs
-        dataDirs.prepend(str(self.pds.config_path) + 'share:')
+        dataDirs = QDir.homePath() + ":" + dataDirs
+        dataDirs = str(self.pds.config_path) + 'share:' + dataDirs
 
         if self.pds.session.ExtraDirs:
             dirs = QFile.decodeName(
