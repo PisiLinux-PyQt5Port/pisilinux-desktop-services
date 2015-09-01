@@ -100,8 +100,8 @@ class QIconLoader:
                 indexReader = QSettings(themeIndex.fileName(), 
                         QSettings.IniFormat)
                 for key in indexReader.allKeys():
-                    if key.endsWith("/Size"):
-                        size = indexReader.value(key).toInt()
+                    if key.endswith("/Size"):
+                        size = indexReader.value(key)
                         dirList.append((size[0], 
                             unicode(key.left(key.size() - 5))))
                 parents = indexReader.value('Icon Theme/Inherits')
