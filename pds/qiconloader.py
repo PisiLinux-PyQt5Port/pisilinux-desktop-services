@@ -57,7 +57,7 @@ class QIconLoader:
         self._forceCache = forceCache
 
         # Get possible Data Directories
-        dataDirs = getenv('XDG_DATA_DIRS'))
+        dataDirs = getenv('XDG_DATA_DIRS')
         if dataDirs.isspace():
            dataDirs = str('/usr/local/share/:/usr/share/')
 
