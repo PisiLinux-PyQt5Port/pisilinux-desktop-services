@@ -13,15 +13,15 @@ from PyQt5.QtCore import SIGNAL
 from PyQt5.QtCore import QTimeLine
 from PyQt5.QtCore import QEasingCurve
 
-# QtGui Libraries
-from PyQt5.QtGui import QFrame
-from PyQt5.QtGui import QLabel
-from PyQt5.QtGui import QWidget
-from PyQt5.QtGui import QLineEdit
-from PyQt5.QtGui import QBoxLayout
-from PyQt5.QtGui import QScrollArea
-from PyQt5.QtGui import QPushButton
-from PyQt5.QtGui import QMessageBox
+# QtWidgets Libraries
+from PyQt5.QtWidgets import QFrame
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QBoxLayout
+from PyQt5.QtWidgets import QScrollArea
+from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QResizeEvent
 
 __author__      = "Gökmen Göksel"
@@ -144,7 +144,7 @@ class QPageWidget(QScrollArea):
         self.__scrollBar.setValue(self.__current * self.__base_value())
 
         # Emit currentChanged SIGNAL
-        self.emit(SIGNAL("currentChanged()"))
+        self.currentChanged.emit()
 
     def event(self, event):
         """ Overrides the main event handler to catch resize events """
@@ -200,9 +200,9 @@ class QPageWidget(QScrollArea):
         self.layout.addWidget(self.__tmp_page.widget)
 
         # Create connections for page navigation signals from new page
-        self.connect(page.widget, SIGNAL("pageNext()"), self.next)
-        self.connect(page.widget, SIGNAL("pagePrevious()"), self.prev)
-        self.connect(page.widget, SIGNAL("setCurrent(int)"), self.setCurrent)
+        page.widget.pageNext.connect(self.next)
+        page.widget.pagePrevious.connect(self.prev)
+        page.widget.setCurrent.connect(self.setCurrent)
 
     def __setCurrent(self, pageNumber):
         """ Internal method to set current page index. """

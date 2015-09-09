@@ -15,6 +15,7 @@
 # Qt Libraries
 from PyQt5 import Qt
 
+# x11embedcontainer sınıfı qt5 de mevcut değil.
 class PApplicationContainer(Qt.QX11EmbedContainer):
     def __init__(self, parent = None, process = None, args = ()):
         Qt.QX11EmbedContainer.__init__(self, parent)

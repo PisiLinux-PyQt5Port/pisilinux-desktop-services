@@ -27,7 +27,7 @@ class QUniqueApplication(QApplication):
     def __init__(self, argv, catalog):
         QApplication.__init__(self, argv)
         self.aboutToQuit.connect(self.cleanup)
-        self.control = QtNetwork.QLocalServer(self)
+        self.control = QLocalServer(self)
         self.control.newConnection.connect(self.onControlConnect)
         self.mainwindow = None
         self.catalog = '%s-pds.socket' % catalog
@@ -62,7 +62,7 @@ class QUniqueApplication(QApplication):
         self.control.removeServer(self.catalog)
 
     def sendToInstance(self, data = ''):
-        socket = QtNetwork.QLocalSocket()
+        socket = QLocalSocket()
         socket.connectToServer(self.catalog, QIODevice.WriteOnly)
         if socket.waitForConnected( 500 ):
             if len(data) > 0:

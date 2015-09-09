@@ -22,7 +22,7 @@ class PThread(QThread):
         QThread.__init__(self,parent)
 
         if callback:
-            parent.connect(self, SIGNAL("finished()"), callback)
+            parent.connect(self, SIGNAL("finished()"), callback) # FIXME
 
         self.action = action
         self.args = args
@@ -37,7 +37,7 @@ class PThread(QThread):
             if self.exceptionHandler:
                 self.exceptionHandler(e)
         finally:
-            self.connect(self.parent(), SIGNAL("cleanUp()"), SLOT("deleteLater()"))
+            self.connect(self.parent(), SIGNAL("cleanUp()"), SLOT("deleteLater()")) # FIXME
 
     def cleanUp(self):
         self.deleteLater()

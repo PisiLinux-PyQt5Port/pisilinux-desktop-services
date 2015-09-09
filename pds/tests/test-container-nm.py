@@ -12,7 +12,7 @@
 # any later version.
 
 # Qt Libraries
-from PyQt5 import Qt
+from PyQt5 import QtCore, QtWidgets
 
 # PDS Container
 from pds.container import PApplicationContainer
@@ -25,7 +25,7 @@ class PNetworkManager(PApplicationContainer):
         ret = self.start("nm-connection-editor", ("--winid", str(self.winId())))
 
         if ret[0]:
-            self.setMinimumSize(Qt.QSize(450, 200))
+            self.setMinimumSize(QtCore.QSize(450, 200))
             self.show()
 
         return ret
@@ -33,7 +33,7 @@ class PNetworkManager(PApplicationContainer):
 if __name__ == "__main__":
     import sys
 
-    app = Qt.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     ui = PNetworkManager()
     ui.startNetworkManager()

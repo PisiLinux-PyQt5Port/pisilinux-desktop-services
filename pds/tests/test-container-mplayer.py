@@ -12,7 +12,7 @@
 # any later version.
 
 # Qt Libraries
-from PyQt5 import Qt
+from PyQt5 import QtWidgets
 
 # PDS Container
 from pds.container import PApplicationContainer
@@ -32,12 +32,12 @@ class PMplayer(PApplicationContainer):
 
         return ret
 
-class TestUI(Qt.QWidget):
+class TestUI(QtWidgets.QWidget):
     def __init__(self, parent=None):
-        Qt.QWidget.__init__(self, parent)
-        self.layout = Qt.QGridLayout(self)
+        QtWidgets.QWidget.__init__(self, parent)
+        self.layout = QtWidgets.QGridLayout(self)
 
-        self.pushbutton = Qt.QPushButton("Open Media", self)
+        self.pushbutton = QtWidgets.QPushButton("Open Media", self)
         self.layout.addWidget(self.pushbutton)
 
         self.mplayer = PMplayer(self)
@@ -47,13 +47,13 @@ class TestUI(Qt.QWidget):
 
     def getMedia(self):
         self.mplayer.openMedia(
-                Qt.QFileDialog.getOpenFileName(self,
+                QtWidgets.QFileDialog.getOpenFileName(self,
                     "Open Media", "/", "Media Files (*.ogv *.mov *.avi)"))
 
 if __name__ == "__main__":
     import sys
 
-    app = Qt.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     ui = TestUI()
     ui.show()

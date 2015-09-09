@@ -19,7 +19,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QSize
 
 from PyQt5.QtGui import QColor
-from PyQt5.QtGui import QWidget
+from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter
 from PyQt5.QtGui import QPalette
 
